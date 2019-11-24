@@ -20,16 +20,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-Route::post('/usuarios','UsuarioController@store');
-Route::get('/usuarios','UsuarioController@index');
-Route::post('/viajes/imei_fecha','ViajeController@viajesImeiFecha');
+        Route::post('/usuarios','UsuarioController@store');
+        Route::get('/usuarios','UsuarioController@index');
+        Route::post('/viajes/imei_fecha','ViajeController@viajesImeiFecha');
+        
+        
+        
+        Route::get('viajes','ViajeController@index');
+        Route::delete('viajes','ViajeController@deleteAll');
+        Route::post('viajes','ViajeController@store');
+        
+        Route::get('/viajes/1', function () {
+            return new ViajeResource(Viaje::where('imei','1')->get());
+        });  
+            
 
-
-
-Route::get('viajes','ViajeController@index');
-Route::delete('viajes','ViajeController@deleteAll');
-Route::post('viajes','ViajeController@store');
-
-Route::get('/viajes/1', function () {
-    return new ViajeResource(Viaje::where('imei','1')->get());
-});
